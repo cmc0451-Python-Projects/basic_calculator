@@ -1,0 +1,59 @@
+#Calculator
+import os
+#Add
+def adding(n1, n2):
+  return n1 + n2
+
+#Subtract
+def subtract(n1, n2):
+  return n1 - n2
+
+#Multiply
+def multiply(n1, n2):
+  return n1 * n2
+
+#Divide 
+def divide(n1, n2):
+  return n1 / n2
+
+operations = {
+  "+": adding, 
+  "-": subtract, 
+  "/": divide, 
+  "*": multiply,
+}
+
+num1 = int(input("What is the first number?: "))
+
+
+horizontal = []
+for symbol in operations:
+  horizontal += symbol
+  
+print(f"{horizontal[0]} {horizontal[1]} {horizontal[2]} {horizontal[3]}")
+
+add_answer = []
+answer_counter = 0
+operation_symbol = input("Pick an operation from the line above: ")
+num2 = int(input("What is the second number?: "))
+chosen_ops = operations[operation_symbol]
+answer = chosen_ops(num1, num2)
+add_answer.append(str(answer))
+
+print(f"{num1} {operation_symbol} {num2} = {chosen_ops(num1, num2)}")
+  
+finished = True
+while finished:
+  if_finished = input("Would you like to choose another number 'Yes' or 'No' ? ")
+  if if_finished == "no":
+    os.system('clr')
+    print("Have a good day!")
+  elif if_finished == "yes":
+    print(f"{horizontal[0]} {horizontal[1]} {horizontal[2]} {horizontal[3]}")
+    operation_symbol = input("Pick an operation from the line above: ")
+    other_num = int(input("What is the other number you would like to choose? "))
+    chosen_ops = operations[operation_symbol]
+    answer = chosen_ops(int(add_answer[answer_counter]), other_num)
+    answer_counter += 1
+
+    print(f"{add_answer[answer_counter - 1]} {operation_symbol} {other_num} = {answer}")
